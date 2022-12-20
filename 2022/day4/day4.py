@@ -29,8 +29,6 @@ if __name__ == "__main__":
     data = open("input").read()
     for pair in data.splitlines():
         elves = pair.split(",")
-        e1 = Elf(elves[0])
-        e2 = Elf(elves[1])
-        elf_list.append((e1,e2))
+        elf_list.append((Elf(elves[0]), Elf(elves[1])))
     part_one()
     part_two()
