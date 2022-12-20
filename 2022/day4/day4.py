@@ -17,27 +17,20 @@ class Elf:
 
 elf_list = []
 
-def part_two(data):
-    count = 0
-    for pair in elf_list:
-        if pair[0].overlaps(pair[1]):
-            count += 1
-    print(count)
+def part_two():
+    overlapping = [e for e in elf_list if e[0].overlaps(e[1])]
+    print(len(overlapping))
 
+def part_one():
+    contains = [e for e in elf_list if e[0].contains(e[1]) or e[1].contains(e[0])]
+    print(len(contains))
 
-def part_one(data):
-    count = 0
+if __name__ == "__main__":
+    data = open("input").read()
     for pair in data.splitlines():
         elves = pair.split(",")
         e1 = Elf(elves[0])
         e2 = Elf(elves[1])
         elf_list.append((e1,e2))
-        if e1.contains(e2) or e2.contains(e1):
-            count += 1
-
-    print(count)
-
-if __name__ == "__main__":
-    data = open("input").read()
-    part_one(data)
-    part_two(data)
+    part_one()
+    part_two()
